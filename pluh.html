@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link id="style_link" rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div id="wrapper">
+        <h1>Gustavo Fring fan page</h1>
+        <a href="https://en.wikipedia.org/wiki/Gus_Fring">wikipedia dot com</a>
+        <br></br>
+        <img 
+        src="https://static.wikia.nocookie.net/breakingbad/images/5/54/BCS_S3_GusFring.jpg/revision/latest/scale-to-width/360?cb=20170327185354" width="500" height="300"
+        >
+        </img>
+        <h2>TABLE OF CONTENTS:</h2>
+        <ul>
+            <li>Chicken resturaunt</li>
+            <li>Personality</li>
+            <li>Backstory</li>
+        </ul>
+        <div class="thing">
+            <h1>Chicken resturaunt</h1>
+            <a>
+                Los Pollos Hermanos, ah, where the golden rays of sunshine seem to glint off the perfectly crispy chicken skin, beckoning patrons from miles around to savor its tender juiciness. Nestled in the heart of Albuquerque, this culinary gem doesn't just serve chicken; it crafts an experience. The aroma of freshly seasoned poultry wafts through the air, tempting even the most steadfast dieter to indulge. Families gather, their faces lighting up with joy as they bite into the secret recipe that's been passed down through generations of Hermanos. Every bite tells a story of passion, dedication, and of course, a commitment to making the best darn chicken this side of the Rio Grande.
+            </a>
+            <h1>Personality</h1>
+            <a>
+                Gustavo Fring, the epitome of integrity and generosity, stands as a pillar of the community in Albuquerque. Known for his unwavering commitment to honesty and fairness, Gus embodies the values of compassion and goodwill in every aspect of his life. Whether it's his dedication to serving the finest chicken at Los Pollos Hermanos or his philanthropic efforts to support local charities and businesses, Gus is always there with a warm smile and a helping hand. His quiet demeanor belies a deep-seated belief in doing what's right, fostering a workplace where employees are not just colleagues but family. Gus Fring, a man of impeccable character and boundless generosity, leaves an indelible mark on everyone fortunate enough to cross paths with him.   
+            </a>
+            <h1>Backstory</h1>
+            <a>
+                Gus Fring's backstory unfolds with a tale of perseverance and entrepreneurial spirit. Born in Chile, he ventured to Mexico in pursuit of opportunities, driven by a vision for success and a dedication to hard work. With little known about his early life, Gus established himself in Albuquerque, where he meticulously built Los Pollos Hermanos into a beloved local institution known for its exceptional quality and customer satisfaction. His reputation for fairness and reliability transcended the business world, earning him admiration and respect from all who crossed his path. Gus's quiet demeanor masked a journey marked by challenges and triumphs, shaping him into the influential and respected figure he is today. His story is a testament to determination and the power of a steadfast commitment to excellence.
+            </a>
+            <h1 id="s1" style="display: none;">Secret</h1>
+            <a id="s2" style="display: none;">
+                Gus Fring, a fictional character from "Breaking Bad," is known for his intricate dual life: a respectable businessman running Los Pollos Hermanos, a popular fast-food chain, and a clandestine drug lord secretly manufacturing and distributing high-quality methamphetamine. Underneath his polished facade lies a meticulously planned operation that ensures his meth production remains undetected by law enforcement. Gus leverages his legitimate business as a front to launder money and maintain a veneer of innocence, shielding his illicit activities from suspicion. His calculated approach to the drug trade and his ability to navigate both the legitimate and criminal worlds with precision make him a formidable and complex figure in the series' narrative.
+            </a>
+        </div>
+        <br></br>
+        <div>
+            <button id="fan">press button... SECRET for FANS ONLY</button>
+        </div>
+
+        <!--<button id="stylechange">CHANGE STYLE</button> -->
+
+        <div id="dynamiclist" style="display: flex; justify-content: space-around; align-items: center;"></div>
+
+        <script>
+            const button = document.getElementById("fan")
+            
+            const stbutton = document.getElementById("stylechange") 
+
+            const styles = ["style.css", 'style2.css', 'style3.css', 'style4.css']
+
+            const stlink = document.getElementById("style_link") 
+
+            const s1 = document.getElementById("s1")
+            const s2 = document.getElementById("s2")
+            const s3 = document.getElementById("s3")
+            
+            const dbuttonlist = document.getElementById("dynamiclist")
+
+            var secretVis = false
+
+            function cycle(lst, item){
+                console.log(item)
+                const indx = lst.indexOf(item)
+                if (indx < lst.length - 1){
+                    console.log(indx)
+                    console.log(lst[indx + 1])
+                    return lst[indx + 1]
+                }
+                else{
+                    return lst[0]
+                }
+            }
+
+            function bstyle(a){
+                if (a){
+                    return "display: none"
+                }
+                else{
+                    return "display: block"
+                }
+            }
+            
+            function isPrime(n){
+
+                if (n==2){return false}
+
+                for (let i = 2; i <= n / 2; i++){
+
+                    if (n % i == 0){
+                        return false
+                    }
+
+                }
+                return true
+            }
+            
+            function hideCurrentStyle(){
+                href_slice = stlink.href.split("/")
+                currentstyle = href_slice[href_slice.length - 1]
+
+                for (var button of dbuttonlist.childNodes){
+                    console.log(button)
+                    if (button.innerText == currentstyle){
+                        button.style = "display: none"
+                    }
+                    else{
+                        button.style = "display: block"
+                    }
+                }
+            }
+
+            function createNewButton(text){
+                const newb = document.createElement("button")
+                newb.innerText = text
+                dbuttonlist.appendChild(newb)
+                newb.addEventListener("click", function(){
+                    stlink.href = text
+                    //hideCurrentStyle()
+                }
+            )
+            }
+
+            const primes = []
+            for (let i = 1; i < 100; i++){
+                if (isPrime(i)){
+                    primes.push(i)
+                }
+            }
+            console.log(primes)
+
+            button.addEventListener('click', function() {
+                secretVis = (!secretVis)
+                s1.style = bstyle(secretVis)
+                s2.style = bstyle(secretVis)
+
+            });
+
+            //stbutton.addEventListener('click', function() {
+            //    
+            //    href_slice = stlink.href.split("/")
+            //    console.log(href_slice)
+            //    stlink.href = cycle(styles, href_slice[href_slice.length - 1])
+            //    console.log(stlink.href)
+            //});
+
+            for (sheet of styles){
+                createNewButton(sheet)
+            }
+            //hideCurrentStyle()
+
+        </script>
+        </div>
+    </body>
+
+</html>
